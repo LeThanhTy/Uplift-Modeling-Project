@@ -6,33 +6,43 @@ const API = axios.create({
 
 export default API;
 
-export const loadData = () => API.post("/data/load");
+// ================= DATA =================
 
-export const exploreData = () => API.get("/data/explore");
+export const loadData = () =>
+  API.post("/api/v1/data/load");
+
+export const exploreData = () =>
+  API.get("/api/v1/data/explore");
 
 export const preprocessData = () =>
-  API.post("/data/preprocess", {
+  API.post("/api/v1/data/preprocess", {
     test_size: 0.2,
     random_state: 42,
   });
 
+// ================= TRAINING =================
+
 export const trainModel = (modelType) =>
-  API.post("/models/train", {
+  API.post("/api/v1/models/train", {
     model_type: modelType,
     random_state: 42,
   });
 
+// ================= PREDICTIONS =================
+
 export const generatePredictions = () =>
-  API.post("/predictions/predict");
+  API.post("/api/v1/predictions/predict");
+
+// ================= EVALUATION =================
 
 export const getMetrics = () =>
-  API.get("/evaluation/metrics");
+  API.get("/api/v1/evaluation/metrics");
 
 export const getQini = () =>
-  API.get("/evaluation/qini");
+  API.get("/api/v1/evaluation/qini");
 
 export const getDeciles = () =>
-  API.get("/evaluation/deciles");
+  API.get("/api/v1/evaluation/deciles");
 
 export const getComparison = () =>
-  API.get("/evaluation/comparison");
+  API.get("/api/v1/evaluation/comparison");
