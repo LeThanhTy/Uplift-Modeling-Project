@@ -18,7 +18,7 @@ from data_service import data_service
 from training_service import training_service
 from prediction_service import prediction_service
 from evaluation_service import evaluation_service
-
+from fastapi.middleware.cors import CORSMiddleware
 
 # ==================== LIFESPAN CONTEXT ====================
 
@@ -41,13 +41,22 @@ app = FastAPI(
 
 # ==================== CORS CONFIGURATION ====================
 
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://uplift-modeling-web.onrender.com",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=config.ALLOWED_ORIGINS,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 print(f"✅ CORS enabled for: {config.ALLOWED_ORIGINS}")
 
