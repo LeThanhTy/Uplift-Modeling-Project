@@ -10,3 +10,4 @@ scikit-uplift==0.5.0
 xgboost==2.0.3
 econml==0.14.0
 scikit-learn==1.1.2
+gunicorn
